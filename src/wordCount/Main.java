@@ -27,6 +27,8 @@ public class Main
 			}
 		}
 
+		System.out.println("====top 50 words by frequency====");
+
 		ArrayList<Integer> counts = new ArrayList<Integer>();   //make an arraylist based on counts
 		for (String key : wordsMap.keySet())
 		{
@@ -35,6 +37,7 @@ public class Main
 
 		Collections.sort(counts, Collections.reverseOrder());   //sort arraylist by counts in descending order
 
+		HashMap<String, Integer> topWords = new HashMap<String, Integer>();
 		for (int i = 0; i < 50; i++)
 		{
 			for (String key : wordsMap.keySet())
@@ -43,10 +46,29 @@ public class Main
 				{
 					System.out.println(key + " = " + counts.get(i));
 					wordsMap.remove(key);	   //remove key if count matched
-					topWords.get()
+					topWords.put(key, counts.get(i));
 					break;
 				}
 			}	
+		}
+
+
+		//for stretch
+		System.out.println("====top 50 words alphabetically====");
+
+		ArrayList<String> sortedWords = new ArrayList<String>(topWords.keySet());
+		Collections.sort(sortedWords);
+
+		for (int i = 0; i < sortedWords.size(); i++)
+		{
+			for (String key : topWords.keySet())
+			{
+				if (key == sortedWords.get(i))
+				{
+					System.out.println(key + " = " + topWords.get(key));
+					break;
+				}
+			}
 		}
 	}
 }
